@@ -57,10 +57,28 @@
                     </div>
                 </div>
             </div>
+            <div class="users">
+                @if(  isset($users))
+                    @foreach($users as $user)
+                        <div class="flex items-center space-x-2 p-2 hover:cursor-pointer" 
+                            data-user-id="{{$user->id}}"
+                            data-user-name="{{$user->name}}"
+                            onclick="openChat(this)"
+                        >
+                            <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
+                                <span class="text-sm font-medium text-gray-700">{{ substr($user->name, 0, 1) }}</span>
+                            </div>
+                            <span class="text-sm font-medium text-gray-700">{{ $user->name }}</span>
+                        </div>
+                    @endforeach
+                @else
+                    <p class="text-sm text-gray-500">No users online</p>
+                @endif
+            </div>
         </div>
 
         <!-- Chat Interface -->
-        <div class="px-4 py-6 sm:px-0">
+        {{-- <div class="px-4 py-6 sm:px-0">
             <div class="bg-white shadow rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
                     <div class="flex items-center justify-between mb-6">
@@ -132,10 +150,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Quick Actions -->
-        <div class="px-4 py-6 sm:px-0">
+        {{-- <div class="px-4 py-6 sm:px-0">
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 <div class="bg-white overflow-hidden shadow rounded-lg">
                     <div class="p-5">
@@ -197,7 +215,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
+    <div id="users_chats" class="fixed bottom-4 right-4 flex flex-row-reverse gap-3 z-50" >
+
+        
+    </div>
+            
 </div>
+<script src="{{ asset('js/dashboard.js') }}" defer></script>
 @endsection 
