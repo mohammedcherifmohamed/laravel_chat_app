@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MessegesController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,6 +18,13 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+
+Route::group(["prefix" => "message",'middleware' => 'auth'], function () {
+    Route::post('/', [MessegesController::class, 'storeMessage'])->name('message.store');
+    Route::get('/{user_id}', [MessegesController::class, 'getMessages'])->name('message.get');
+
+
+});
 
 
 

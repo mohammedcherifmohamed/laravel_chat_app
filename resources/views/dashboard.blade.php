@@ -60,16 +60,16 @@
             <div class="users">
                 @if(  isset($users))
                     @foreach($users as $user)
-                        <div class="flex items-center space-x-2 p-2 hover:cursor-pointer" 
+                        <div class="flex items-center space-x-2 p-2" 
                             data-user-id="{{$user->id}}"
                             data-user-name="{{$user->name}}"
                             onclick="openChat(this)"
-                        >
+                            >
                             <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
                                 <span class="text-sm font-medium text-gray-700">{{ substr($user->name, 0, 1) }}</span>
                             </div>
                             <span class="text-sm font-medium text-gray-700">{{ $user->name }}</span>
-                        </div>
+                         </div>
                     @endforeach
                 @else
                     <p class="text-sm text-gray-500">No users online</p>
@@ -223,5 +223,9 @@
     </div>
             
 </div>
+<script>
+    const messageStoreUrl = "{{ route('message.store') }}";
+      const currentUserId = {{ auth()->id() }};
+</script>
 <script src="{{ asset('js/dashboard.js') }}" defer></script>
 @endsection 

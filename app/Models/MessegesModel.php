@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MessegesModel extends Model
 {
+    protected $table = 'messeges';
        protected $fillable = [
         'sender_id',
         'receiver_id',
